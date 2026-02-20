@@ -16,20 +16,23 @@ A professional TradingView indicator that displays up to 8 customizable Simple M
 ## Default Settings
 
 ### Moving Averages
-- **MA1 (Fast)**: 5-period - Green (#95D47A)
-- **MA2 (Slow)**: 10-period - Red (#E60049)
-- **MA3**: 20-period - Blue (#3254FF)
-- **MA4**: 50-period - Teal (#00BFA0)
-- **MA5**: 60-period - Magenta (#DC0AB4)
-- **MA6**: 100-period - Light Blue (#0BB4FF)
-- **MA7**: 120-period - Purple (#9B19F5)
-- **MA8**: 200-period - Orange (#FFA300)
+
+- **MA1 (Fast)**: 5-period - Vivid Yellow (#FFD700)
+- **MA2 (Slow)**: 10-period - Electric Blue (#007BFF)
+- **MA3**: 20-period - Deep Rose (#FF1493)
+- **MA4**: 50-period - Spring Bud (#A5FF00)
+- **MA5**: 60-period - Royal Purple (#8A2BE2)
+- **MA6**: 100-period - Cyan (#00FFFF)
+- **MA7**: 120-period - Magenta (#FF00FF)
+- **MA8**: 200-period - Bright Orange (#FF8C00)
 
 ### Cloud Colors
+
 - **Bullish**: Green (#2ECC71)
 - **Bearish**: Red (#E74C3C)
 
 ### ATR
+
 - **Period**: 14 (customizable from 1-100)
   - 5-10: Scalpers/Day Traders
   - 14: Swing Traders (industry standard)
@@ -39,22 +42,28 @@ A professional TradingView indicator that displays up to 8 customizable Simple M
 ## Customization
 
 ### Independent Visibility Controls
+
 Each moving average (MA1-MA8) has **two separate toggle controls**:
+
 - **Chart**: Show/hide the indicator line on the price chart
 - **HUD**: Show/hide the indicator value in the heads-up display
 
 This allows you to:
+
 - Display short-term MAs on the chart while tracking only long-term MAs in the HUD
 - Show all MAs in the HUD for reference without cluttering the chart
 - Customize your workspace exactly how you need it
 
 ### Individual MA Settings
+
 For each moving average, you can adjust:
+
 - **Visibility**: Toggle chart and HUD display independently
 - **Period**: Adjust the lookback length (1-500)
 - **Color**: Choose your preferred color
 
 ### ATR Settings
+
 - **HUD Visibility**: Toggle ATR display in the heads-up display
 - **Period**: Adjust calculation period (1-100, default: 14)
   - 5-10 for scalpers and day traders (more responsive)
@@ -63,12 +72,15 @@ For each moving average, you can adjust:
 - **Color**: Customize the HUD cell color
 
 ### Cloud Settings
+
 - **Bull Color**: Color displayed when MA1 > MA2
 - **Bear Color**: Color displayed when MA1 < MA2
 - **Trend Transparency**: Adjust cloud opacity (default: 80%)
 
 ### HUD Settings (Advanced)
+
 Located in the Misc settings group:
+
 - **HUD Text Size**: Adjust display size (Tiny/Small/Normal/Large/Huge)
 - **HUD Left Offset**: Horizontal positioning (default: 13)
 - **HUD Transparency**: Adjust cell background opacity (default: 10%)
@@ -76,20 +88,24 @@ Located in the Misc settings group:
 ## How to Use
 
 ### Trend Identification
+
 - **Bullish Trend**: When the cloud is green (fast MA above slow MA)
 - **Bearish Trend**: When the cloud is red (fast MA below slow MA)
 - **Crossovers**: Watch for MA1/MA2 crossovers as potential entry/exit signals
 
 ### Support and Resistance
+
 - Longer-period MAs (50, 100, 200) often act as dynamic support/resistance levels
 - Price bouncing off a major MA can indicate trend continuation
 - Price breaking through a major MA may signal trend reversal
 
 ### Multi-Timeframe Analysis
+
 - The HUD displays daily SMA values regardless of your chart timeframe
 - Compare current timeframe MAs with daily values for confluence
 
 ### Volatility Assessment
+
 - ATR value increases during high volatility
 - Use ATR for stop-loss placement and position sizing
 
