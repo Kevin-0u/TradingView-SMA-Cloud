@@ -11,6 +11,7 @@ A professional TradingView indicator that displays up to 8 customizable Simple M
 - **Heads-Up Display (HUD)**: Real-time display of daily SMA values and ATR in a customizable top-left overlay
   - Two-row format: SMA labels on top, values below for easy reading
 - **Independent Visibility Controls**: Toggle each indicator on/off separately for chart and HUD
+- **Timeframe-Aware Chart Visibility**: On intraday charts (below 1D), only MA1, MA2, and MA3 are shown on the chart by default to reduce clutter — MA4 through MA8 are hidden. On daily or higher timeframes, all MAs are shown by default. This automatic behaviour is bypassed entirely if you manually turn off any MA chart toggle, allowing full manual control.
 - **Full Customization**: Adjust periods, customize colors, and control transparency for all indicators
 
 ## Default Settings
@@ -31,6 +32,15 @@ A professional TradingView indicator that displays up to 8 customizable Simple M
 - **Bullish**: Green (#2ECC71)
 - **Bearish**: Red (#E74C3C)
 
+### Timeframe-Aware Defaults
+
+| Timeframe               | MA1   | MA2   | MA3   | MA4–MA8 |
+|-------------------------|-------|-------|-------|---------|
+| Intraday (< 1D)         | Shown | Shown | Shown | Hidden  |
+| Daily or higher (≥ 1D)  | Shown | Shown | Shown | Shown   |
+
+> **Note:** These defaults only apply when all 8 MA chart toggles are at their default (`true`). As soon as any toggle is manually set to off, all toggles are respected exactly as configured and the automatic timeframe logic is disabled.
+
 ### ATR
 
 - **Period**: 14 (customizable from 1-100)
@@ -40,6 +50,17 @@ A professional TradingView indicator that displays up to 8 customizable Simple M
 - **Color**: Silver (#AFC0C0)
 
 ## Customization
+
+### Timeframe-Aware Chart Visibility
+
+The indicator automatically adjusts which MAs are plotted on the chart based on the current timeframe:
+
+- **Intraday charts (< 1D)**: Only MA1, MA2, and MA3 are displayed on the chart by default. MA4–MA8 are hidden to keep intraday charts clean and readable.
+- **Daily or higher charts (≥ 1D)**: All 8 MAs are displayed on the chart by default.
+
+**Manual override**: This automatic behaviour is active only when all 8 MA chart toggles are left at their defaults (all on). The moment any chart toggle is manually turned off, the indicator assumes you are in full manual mode and respects all toggle states exactly as set — the timeframe logic no longer applies.
+
+> The HUD is unaffected by this logic and always displays all MAs regardless of timeframe.
 
 ### Independent Visibility Controls
 
@@ -111,7 +132,7 @@ Located in the Misc settings group:
 
 ## Technical Details
 
-- **Version**: 1.1
+- **Version**: 1.2
 - **Pine Script Version**: v6
 - **Overlay**: Yes (plots on price chart)
 - **License**: Mozilla Public License 2.0
@@ -134,7 +155,7 @@ Located in the Misc settings group:
    - Swing Trading: 14 (industry standard, balanced sensitivity)
    - Position/Long-term: 20+ (filters noise, shows major volatility shifts)
 4. **Combine with Other Indicators**: Works well with RSI, MACD, or volume indicators
-5. **Timeframe Considerations**: Longer MAs (100, 200) are more reliable on daily/weekly charts
+5. **Timeframe Considerations**: On intraday charts, MA4–MA8 are automatically hidden by default to reduce noise — only MA1, MA2, and MA3 are shown. Switch to a daily or higher timeframe to see all MAs. To override this behaviour, manually toggle any MA chart visibility off; this puts the indicator into full manual mode where all toggles are respected as-is.
 
 ## Common Use Cases
 

@@ -44,6 +44,10 @@ var TREND_TRANSPARENCY = 80
 // Customization unlikely needed beyond this line
 //-----------------------------------------
 
+// Detect if the current chart timeframe is shorter than 1 day (intraday)
+// timeframe.in_seconds() returns the timeframe in seconds; 86400 = 1 day
+isIntraday = timeframe.in_seconds() < 86400
+
 // Inputs
 ma1Show = input.bool(title='Chart', defval=true, inline='1', tooltip='Show MA1 on chart')
 ma1ShowTable = input.bool(title='HUD', defval=true, inline='1', tooltip='Show MA1 in heads-up display')
@@ -55,35 +59,46 @@ ma2ShowTable = input.bool(title='HUD', defval=true, inline='2', tooltip='Show MA
 ma2Length = input.int(title='MA2 (Slow)', defval=MA2, minval=1, maxval=500, inline='2', tooltip='Slow moving average period for cloud visualization', display=display.none)
 ma2Color = input.color(title='', defval=COLOR2, inline='2')
 
-ma3Show = input.bool(title='Chart', defval=false, inline='3', tooltip='Show MA3 on chart')
+ma3Show = input.bool(title='Chart', defval=true, inline='3', tooltip='Show MA3 on chart')
 ma3ShowTable = input.bool(title='HUD', defval=true, inline='3', tooltip='Show MA3 in heads-up display')
 ma3Length = input.int(title='MA3', defval=MA3, minval=1, maxval=500, inline='3', tooltip='Third moving average period (commonly 20)', display=display.none)
 ma3Color = input.color(title='', defval=COLOR3, inline='3')
 
-ma4Show = input.bool(title='Chart', defval=false, inline='4', tooltip='Show MA4 on chart')
+ma4Show = input.bool(title='Chart', defval=true, inline='4', tooltip='Show MA4 on chart')
 ma4ShowTable = input.bool(title='HUD', defval=true, inline='4', tooltip='Show MA4 in heads-up display')
 ma4Length = input.int(title='MA4', defval=MA4, minval=1, maxval=500, inline='4', tooltip='Fourth moving average period (commonly 50)', display=display.none)
 ma4Color = input.color(title='', defval=COLOR4, inline='4')
 
-ma5Show = input.bool(title='Chart', defval=false, inline='5', tooltip='Show MA5 on chart')
+ma5Show = input.bool(title='Chart', defval=true, inline='5', tooltip='Show MA5 on chart')
 ma5ShowTable = input.bool(title='HUD', defval=true, inline='5', tooltip='Show MA5 in heads-up display')
 ma5Length = input.int(title='MA5', defval=MA5, minval=1, maxval=500, inline='5', tooltip='Fifth moving average period (commonly 60)', display=display.none)
 ma5Color = input.color(title='', defval=COLOR5, inline='5')
 
-ma6Show = input.bool(title='Chart', defval=false, inline='6', tooltip='Show MA6 on chart')
+ma6Show = input.bool(title='Chart', defval=true, inline='6', tooltip='Show MA6 on chart')
 ma6ShowTable = input.bool(title='HUD', defval=true, inline='6', tooltip='Show MA6 in heads-up display')
 ma6Length = input.int(title='MA6', defval=MA6, minval=1, maxval=500, inline='6', tooltip='Sixth moving average period (commonly 100)', display=display.none)
 ma6Color = input.color(title='', defval=COLOR6, inline='6')
 
-ma7Show = input.bool(title='Chart', defval=false, inline='7', tooltip='Show MA7 on chart')
+ma7Show = input.bool(title='Chart', defval=true, inline='7', tooltip='Show MA7 on chart')
 ma7ShowTable = input.bool(title='HUD', defval=true, inline='7', tooltip='Show MA7 in heads-up display')
 ma7Length = input.int(title='MA7', defval=MA7, minval=1, maxval=500, inline='7', tooltip='Seventh moving average period (commonly 120)', display=display.none)
 ma7Color = input.color(title='', defval=COLOR7, inline='7')
 
-ma8Show = input.bool(title='Chart', defval=false, inline='8', tooltip='Show MA8 on chart')
+ma8Show = input.bool(title='Chart', defval=true, inline='8', tooltip='Show MA8 on chart')
 ma8ShowTable = input.bool(title='HUD', defval=true, inline='8', tooltip='Show MA8 in heads-up display')
 ma8Length = input.int(title='MA8', defval=MA8, minval=1, maxval=500, inline='8', tooltip='Eighth moving average period (commonly 200)', display=display.none)
 ma8Color = input.color(title='', defval=COLOR8, inline='8')
+
+// Apply intraday visibility rules (chart plots only):
+// - If ANY of the 8 MA chart toggles is false, the user has customised their layout — respect all toggles as-is.
+// - Only when ALL 8 are true (factory defaults untouched) does isIntraday take effect, hiding MA4–MA8 on intraday charts.
+// HUD always shows all MAs regardless of timeframe.
+userHasCustomised = not (ma1Show and ma2Show and ma3Show and ma4Show and ma5Show and ma6Show and ma7Show and ma8Show)
+ma4ShowEff = userHasCustomised ? ma4Show : not isIntraday
+ma5ShowEff = userHasCustomised ? ma5Show : not isIntraday
+ma6ShowEff = userHasCustomised ? ma6Show : not isIntraday
+ma7ShowEff = userHasCustomised ? ma7Show : not isIntraday
+ma8ShowEff = userHasCustomised ? ma8Show : not isIntraday
 
 // Cloud Settings
 bullColor = input.color(title='Bullish Cloud', defval=COLOR_BULL, group='Cloud', tooltip='Cloud color when fast MA (MA1) is above slow MA (MA2)')
@@ -232,11 +247,11 @@ ma8 = ta.sma(close, ma8Length)
 ma1Plot = plot(ma1Show ? ma1 : na, 'MA1', color=ma1Color)
 ma2Plot = plot(ma2Show ? ma2 : na, 'MA2', color=ma2Color)
 plot(ma3Show ? ma3 : na, 'MA3', color=ma3Color)
-plot(ma4Show ? ma4 : na, 'MA4', color=ma4Color)
-plot(ma5Show ? ma5 : na, 'MA5', color=ma5Color)
-plot(ma6Show ? ma6 : na, 'MA6', color=ma6Color)
-plot(ma7Show ? ma7 : na, 'MA7', color=ma7Color)
-plot(ma8Show ? ma8 : na, 'MA8', color=ma8Color)
+plot(ma4ShowEff ? ma4 : na, 'MA4', color=ma4Color)
+plot(ma5ShowEff ? ma5 : na, 'MA5', color=ma5Color)
+plot(ma6ShowEff ? ma6 : na, 'MA6', color=ma6Color)
+plot(ma7ShowEff ? ma7 : na, 'MA7', color=ma7Color)
+plot(ma8ShowEff ? ma8 : na, 'MA8', color=ma8Color)
 
 // Cloud shading between fast SMA and slow SMA
 trendColor = if ma1Show and ma2Show
