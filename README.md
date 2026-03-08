@@ -37,7 +37,7 @@ A professional TradingView indicator that displays up to 8 customizable Simple M
   - 5-10: Scalpers/Day Traders
   - 14: Swing Traders (industry standard)
   - 20+: Mid/Long-term Traders
-- **Color**: Light Blue (#B3D4FF)
+- **Color**: Silver (#AFC0C0)
 
 ## Customization
 
