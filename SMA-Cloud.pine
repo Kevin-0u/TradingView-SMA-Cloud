@@ -23,15 +23,15 @@ var MA7 = 120
 var MA8 = 200
 var ATR = 14
 
-var COLOR1 = #FFD700 // SMA(5) Fast
-var COLOR2 = #007BFF // SMA(10) Slow
-var COLOR3 = #FF1493 // SMA(20)
-var COLOR4 = #A5FF00 // SMA(50)
-var COLOR5 = #8A2BE2 // SMA(60)
-var COLOR6 = #00FFFF // SMA(100)
-var COLOR7 = #FF00FF // SMA(120)
-var COLOR8 = #FF8C00 // SMA(200)
-var COLOR_ATR = #B3D4FF // ATR
+var COLOR0 = #AFC0C0 // ATR:          [0] Silver
+var COLOR1 = #FFD700 // SMA(5) Fast:  [1] Gold
+var COLOR2 = #007BFF // SMA(10) Slow: [2] DodgerBlue
+var COLOR3 = #FF1493 // SMA(20):      [3] DeepPink
+var COLOR4 = #A5FF00 // SMA(50):      [4] Chartreuse
+var COLOR5 = #8A2BE2 // SMA(60):      [5] BlueViolet
+var COLOR6 = #00FFFF // SMA(100):     [6] Cyan
+var COLOR7 = #FF00FF // SMA(120):     [7] Magenta
+var COLOR8 = #FF8C00 // SMA(200):     [8] DarkOrange
 
 var COLOR_BULL = #2ECC71 // When SMA fast > SMA slow
 var COLOR_BEAR = #E74C3C // When SMA fast < SMA slow
@@ -93,7 +93,7 @@ trendTransparency = input.int(title='Cloud Transparency', defval=TREND_TRANSPARE
 // ATR Settings
 atrShowTable = input.bool(true, "Show in HUD", group='ATR', inline='9', tooltip='Show ATR in heads-up display')
 atrPeriod = input.int(title='Period', defval=ATR, minval=1, maxval=100, group='ATR', inline='9', tooltip='ATR calculation period\n• 5-10: Scalpers/Day Traders (more sensitive to short-term volatility)\n• 14: Swing Traders (balanced view, industry standard)\n• 20+: Mid/Long-term Traders (smoother, filters out noise)', display=display.none)
-atrColor = input.color(COLOR_ATR, "", group='ATR', inline='9')
+atrColor = input.color(COLOR0, "", group='ATR', inline='9')
 
 // Miscellaneous Settings
 tableTopOffset = input.string(title='HUD Text Size', defval='Tiny', options=['Tiny', 'Small', 'Normal', 'Large', 'Huge'], group='Misc', display=display.none, tooltip='Adjust the size of the HUD text')
