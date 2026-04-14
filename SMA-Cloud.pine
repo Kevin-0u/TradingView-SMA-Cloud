@@ -25,11 +25,11 @@ var ATR = 14
 
 var COLOR0 = #AFC0C0 // ATR:          [0] Silver
 var COLOR1 = #FFD700 // SMA(5) Fast:  [1] Gold
-var COLOR2 = #007BFF // SMA(10) Slow: [2] DodgerBlue
+var COLOR2 = #00FFFF // SMA(10) Slow: [2] Cyan
 var COLOR3 = #FF1493 // SMA(20):      [3] DeepPink
 var COLOR4 = #A5FF00 // SMA(50):      [4] Chartreuse
-var COLOR5 = #8A2BE2 // SMA(60):      [5] BlueViolet
-var COLOR6 = #00FFFF // SMA(100):     [6] Cyan
+var COLOR5 = #AA66EA // SMA(60):      [5] MediumPurple
+var COLOR6 = #0063CC // SMA(100):     [6] RoyalBlue
 var COLOR7 = #FF00FF // SMA(120):     [7] Magenta
 var COLOR8 = #FF8C00 // SMA(200):     [8] DarkOrange
 
